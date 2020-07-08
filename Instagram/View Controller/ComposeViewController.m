@@ -87,8 +87,7 @@
 }
 
 - (IBAction)tapDelete:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-
+    [self performSegueWithIdentifier:@"backToHomeSegue" sender:self];
 }
 
 - (IBAction)tapCompose:(id)sender {
@@ -109,7 +108,7 @@
         [myPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (succeeded) {
                 NSLog(@"The message was saved!");
-                [self dismissViewControllerAnimated:true completion:nil];
+                [self performSegueWithIdentifier:@"backToHomeSegue" sender:self];
             } else {
                 NSLog(@"Problem saving message: %@", error.localizedDescription);
             }
