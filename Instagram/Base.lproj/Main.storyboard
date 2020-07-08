@@ -94,9 +94,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="54L-HY-UXM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="54L-HY-UXM">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="605" id="hW6-CL-HnE" customClass="PostCell">
@@ -106,23 +105,31 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="605"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1iX-UY-skY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="473.5"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QlF-2R-EXf" customClass="PFImageView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="453"/>
-                                                            <color key="backgroundColor" red="1" green="0.45932732679999999" blue="0.66938532340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3A-zL-vEQ">
-                                                            <rect key="frame" x="0.0" y="453" width="414" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="QlF-2R-EXf" customClass="PFImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="576.5"/>
+                                                    <color key="backgroundColor" red="1" green="0.45932732679999999" blue="0.66938532340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3A-zL-vEQ">
+                                                    <rect key="frame" x="0.0" y="584.5" width="414" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="q3A-zL-vEQ" secondAttribute="trailing" id="30z-fh-8Gx"/>
+                                                <constraint firstItem="QlF-2R-EXf" firstAttribute="top" secondItem="YJD-dt-O6z" secondAttribute="top" id="6Yu-1Y-GtP"/>
+                                                <constraint firstAttribute="bottom" secondItem="q3A-zL-vEQ" secondAttribute="bottom" id="6ah-UY-weg"/>
+                                                <constraint firstAttribute="trailing" secondItem="QlF-2R-EXf" secondAttribute="trailing" id="HJw-S7-kuP"/>
+                                                <constraint firstItem="QlF-2R-EXf" firstAttribute="width" secondItem="YJD-dt-O6z" secondAttribute="width" id="cjm-6t-03K"/>
+                                                <constraint firstItem="q3A-zL-vEQ" firstAttribute="top" secondItem="QlF-2R-EXf" secondAttribute="bottom" constant="8" id="iHR-54-2l2"/>
+                                                <constraint firstItem="q3A-zL-vEQ" firstAttribute="leading" secondItem="YJD-dt-O6z" secondAttribute="leading" id="jxa-MJ-h0X"/>
+                                                <constraint firstItem="QlF-2R-EXf" firstAttribute="leading" secondItem="YJD-dt-O6z" secondAttribute="leading" id="s6w-LG-wu8"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="QlF-2R-EXf" firstAttribute="width" secondItem="hW6-CL-HnE" secondAttribute="width" id="gls-ac-gzV"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="captionLabel" destination="q3A-zL-vEQ" id="XFS-mb-8BP"/>
                                             <outlet property="pictureView" destination="QlF-2R-EXf" id="6Bg-Gp-4AQ"/>
@@ -132,6 +139,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="54L-HY-UXM" firstAttribute="top" secondItem="YXL-PP-fqz" secondAttribute="top" id="28C-4W-UCt"/>
+                            <constraint firstAttribute="bottom" secondItem="54L-HY-UXM" secondAttribute="bottom" id="87b-yF-UYU"/>
+                            <constraint firstAttribute="trailing" secondItem="54L-HY-UXM" secondAttribute="trailing" id="TLB-YP-pNy"/>
+                            <constraint firstItem="54L-HY-UXM" firstAttribute="leading" secondItem="YXL-PP-fqz" secondAttribute="leading" id="jSo-mp-qT2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="b42-KN-ksP"/>
                     </view>
                     <navigationItem key="navigationItem" id="zLh-8q-sWq">

@@ -31,7 +31,7 @@
     
     [self fetchPosts];
    
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 //    self.tableView.estimatedRowHeight = 500;
 
 }
@@ -68,6 +68,8 @@
     [PFUser logOutInBackgroundWithBlock:^(NSError * error) {   }];
 }
 
+#pragma mark - Table view set up
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     
@@ -81,6 +83,10 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return UITableViewAutomaticDimension;
+//}
 
 
 
