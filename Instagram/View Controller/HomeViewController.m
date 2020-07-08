@@ -74,9 +74,7 @@
     Post *post =self.posts[indexPath.row];
     
     [cell setPost:post];
-    
-    cell.captionLabel.text = post.caption;
-    
+
     return cell;
 }
 

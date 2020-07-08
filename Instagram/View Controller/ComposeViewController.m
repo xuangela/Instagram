@@ -87,9 +87,8 @@
 }
 
 - (IBAction)tapDelete:(id)sender {
-    //[self dismissViewControllerAnimated:true completion:nil];
-    
-    [self popoverPresentationController];
+    [self dismissViewControllerAnimated:true completion:nil];
+
 }
 
 - (IBAction)tapCompose:(id)sender {
@@ -110,12 +109,13 @@
         [myPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (succeeded) {
                 NSLog(@"The message was saved!");
+                [self dismissViewControllerAnimated:true completion:nil];
             } else {
                 NSLog(@"Problem saving message: %@", error.localizedDescription);
             }
         }];
         
-        [self dismissViewControllerAnimated:true completion:nil];
+        
     }
 }
 
