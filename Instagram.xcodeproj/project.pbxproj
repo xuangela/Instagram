@@ -19,6 +19,8 @@
 		B92AB1D824B3CBB30015A1D5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92AB1D724B3CBB30015A1D5 /* LoginViewController.m */; };
 		B92AB1DB24B3D5E40015A1D5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92AB1DA24B3D5E40015A1D5 /* HomeViewController.m */; };
 		B988872124B513EB00AFD3E2 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988872024B513EB00AFD3E2 /* ComposeViewController.m */; };
+		B988872924B5265400AFD3E2 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B988872824B5265400AFD3E2 /* PostCell.m */; };
+		B9E53E4824B648E000AD82A8 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E53E4724B648E000AD82A8 /* Post.m */; };
 		F04BCD1C346EDB1AA0F6F012 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7840A17B749DD7D91187F21 /* Pods_Instagram.framework */; };
 		F3CB91A38FA07EF2EB0BF615 /* Pods_Instagram_InstagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C83D3D39565C6E62D6008F3 /* Pods_Instagram_InstagramUITests.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +71,10 @@
 		B92AB1DA24B3D5E40015A1D5 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		B988871F24B513EB00AFD3E2 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		B988872024B513EB00AFD3E2 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		B988872724B5265400AFD3E2 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
+		B988872824B5265400AFD3E2 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		B9E53E4624B648E000AD82A8 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		B9E53E4724B648E000AD82A8 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		BEF9A2142DD68708EAE3719F /* Pods-InstagramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramTests.release.xcconfig"; path = "Target Support Files/Pods-InstagramTests/Pods-InstagramTests.release.xcconfig"; sourceTree = "<group>"; };
 		CD2783322DFB79E2E8551D6C /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		D80F568C75BAA6553F51DD42 /* Pods_InstagramTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +156,8 @@
 		B92AB19F24B3C4100015A1D5 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				B9E53E4524B648CB00AD82A8 /* Models */,
+				B988872624B5263600AFD3E2 /* Views */,
 				B92AB1D524B3CB830015A1D5 /* View Controller */,
 				B92AB1A024B3C4100015A1D5 /* AppDelegate.h */,
 				B92AB1A124B3C4100015A1D5 /* AppDelegate.m */,
@@ -193,6 +201,24 @@
 				B988872024B513EB00AFD3E2 /* ComposeViewController.m */,
 			);
 			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		B988872624B5263600AFD3E2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B988872724B5265400AFD3E2 /* PostCell.h */,
+				B988872824B5265400AFD3E2 /* PostCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B9E53E4524B648CB00AD82A8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B9E53E4624B648E000AD82A8 /* Post.h */,
+				B9E53E4724B648E000AD82A8 /* Post.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,8 +463,10 @@
 				B92AB1A224B3C4100015A1D5 /* AppDelegate.m in Sources */,
 				B92AB1B324B3C4110015A1D5 /* main.m in Sources */,
 				B988872124B513EB00AFD3E2 /* ComposeViewController.m in Sources */,
+				B988872924B5265400AFD3E2 /* PostCell.m in Sources */,
 				B92AB1DB24B3D5E40015A1D5 /* HomeViewController.m in Sources */,
 				B92AB1A524B3C4100015A1D5 /* SceneDelegate.m in Sources */,
+				B9E53E4824B648E000AD82A8 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *captionField;
 
 @property (nonatomic, strong) UIImagePickerController *imagePickerVC;
+@property (nonatomic, strong) UIAlertController *emptyComposeAlert;
 
 @end
 
@@ -27,6 +28,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self cameraSetup];
+    [self alertSetup];
+}
+
+- (void) cameraSetup {
     self.imagePickerVC = [UIImagePickerController new];
     self.imagePickerVC.delegate = self;
     self.imagePickerVC.allowsEditing = YES;
@@ -38,7 +44,14 @@
         NSLog(@"Camera 🚫 available so we will use photo library instead");
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
+}
 
+- (void) alertSetup {
+    self.emptyComposeAlert = [UIAlertController alertControllerWithTitle:@"Missing post components."
+           message:@"Please attach an image and fill in the caption."
+    preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+    [self.emptyComposeAlert addAction:okAction];
 }
 
 - (IBAction)tappedPic:(id)sender {
@@ -49,9 +62,12 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    
+    [self.pictureView setImage:originalImage];
 
-    [self.pictureView setImage:[self resizeImage:editedImage withSize:CGSizeMake(1000, 1000)]];
+ //   [self.pictureView setImage:[self resizeImage:editedImage withSize:CGSizeMake(1000, 1000)]];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -71,28 +87,36 @@
 }
 
 - (IBAction)tapDelete:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
+    //[self dismissViewControllerAnimated:true completion:nil];
+    
+    [self popoverPresentationController];
 }
 
 - (IBAction)tapCompose:(id)sender {
-    PFObject *myPost = [PFObject objectWithClassName:@"Post"];
-    myPost[@"caption"] = self.captionField.text;
+    if ([self.captionField.text isEqual:@""] ||self.pictureView.image != nil) {
+           [self presentViewController:self.emptyComposeAlert animated:YES completion:^{  }];
+    } else {
+        PFObject *myPost = [PFObject objectWithClassName:@"Post"];
+        myPost[@"caption"] = self.captionField.text;
 
-    NSData *pictureData = UIImagePNGRepresentation(self.pictureView.image);
-    myPost[@"picture"] = [PFFileObject fileObjectWithData:pictureData];
-    
-    myPost[@"timestamp"] = [NSDate date];
-    myPost[@"user"] = PFUser.currentUser;
-    
-    [myPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        if (succeeded) {
-            NSLog(@"The message was saved!");
-        } else {
-            NSLog(@"Problem saving message: %@", error.localizedDescription);
-        }
-    }];
-    
-    [self dismissViewControllerAnimated:true completion:nil];
+        NSData *pictureData = UIImagePNGRepresentation(self.pictureView.image);
+        myPost[@"picture"] = [PFFileObject fileObjectWithData:pictureData];
+        myPost[@"user"] = PFUser.currentUser;
+        
+        Post *post =[[Post alloc] initWithPFObject:myPost];
+        
+        [self.delegate didPost:post];
+        
+        [myPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (succeeded) {
+                NSLog(@"The message was saved!");
+            } else {
+                NSLog(@"Problem saving message: %@", error.localizedDescription);
+            }
+        }];
+        
+        [self dismissViewControllerAnimated:true completion:nil];
+    }
 }
 
 /*
