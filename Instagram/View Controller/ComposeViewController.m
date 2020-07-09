@@ -6,7 +6,7 @@
 //  Copyright © 2020 Angela Xu. All rights reserved.
 //
 
-// TODO: clicking the uiimageview actually presenta an optino to choose from camera or cameraroll
+// TODO: clicking the uiimageview actually presenta an option to choose from camera or cameraroll
 // TODO: warning message is content and the user is trying to delete
 
 #import <Parse/Parse.h>
@@ -67,7 +67,7 @@
     
     [self.pictureView setImage:originalImage];
 
- //   [self.pictureView setImage:[self resizeImage:editedImage withSize:CGSizeMake(1000, 1000)]];
+//    [self.pictureView setImage:[self resizeImage:editedImage withSize:CGSizeMake(1000, 1000)]];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -91,11 +91,12 @@
 }
 
 - (IBAction)tapCompose:(id)sender {
-    if ([self.captionField.text isEqual:@""] ||self.pictureView.image != nil) {
+    if ([self.captionField.text isEqual:@""]) {  // TODO: or if no picture add
            [self presentViewController:self.emptyComposeAlert animated:YES completion:^{  }];
     } else {
         PFObject *myPost = [PFObject objectWithClassName:@"Post"];
         myPost[@"caption"] = self.captionField.text;
+        myPost[@"picAspectRatio"] = [NSNumber numberWithDouble:(self.pictureView.image.size.height / self.pictureView.image.size.width)];
 
         NSData *pictureData = UIImagePNGRepresentation(self.pictureView.image);
         myPost[@"picture"] = [PFFileObject fileObjectWithData:pictureData];

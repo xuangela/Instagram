@@ -55,7 +55,7 @@
 
 - (void)didPost:(Post *)post {
     [self.posts insertObject:post atIndex:0];
-    [self fetchPosts];
+    [self.tableView reloadData];
 }
 
 - (IBAction)tapLogout:(id)sender {
@@ -84,9 +84,13 @@
     return self.posts.count;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return UITableViewAutomaticDimension;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Post *post =self.posts[indexPath.row];
+    
+    CGFloat picRatio = [post.picAspectRatio doubleValue];
+    // 36 hardcoded. 20 set height for caption + 8 + 8 for top and bottom space
+    return picRatio * self.tableView.frame.size.width + 36;
+}
 
 
 

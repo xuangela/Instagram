@@ -106,24 +106,28 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="QlF-2R-EXf" customClass="PFImageView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="576.5"/>
-                                                    <color key="backgroundColor" red="1" green="0.45932732679999999" blue="0.66938532340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="569"/>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3A-zL-vEQ">
-                                                    <rect key="frame" x="0.0" y="584.5" width="414" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3A-zL-vEQ">
+                                                    <rect key="frame" x="8" y="577" width="398" height="20"/>
+                                                    <color key="tintColor" red="1" green="0.80819710320000004" blue="0.92544582559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="9E0-so-tNU"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="q3A-zL-vEQ" secondAttribute="trailing" id="30z-fh-8Gx"/>
+                                                <constraint firstAttribute="trailing" secondItem="q3A-zL-vEQ" secondAttribute="trailing" constant="8" id="30z-fh-8Gx"/>
                                                 <constraint firstItem="QlF-2R-EXf" firstAttribute="top" secondItem="YJD-dt-O6z" secondAttribute="top" id="6Yu-1Y-GtP"/>
-                                                <constraint firstAttribute="bottom" secondItem="q3A-zL-vEQ" secondAttribute="bottom" id="6ah-UY-weg"/>
+                                                <constraint firstAttribute="bottom" secondItem="q3A-zL-vEQ" secondAttribute="bottom" constant="8" id="6ah-UY-weg"/>
                                                 <constraint firstAttribute="trailing" secondItem="QlF-2R-EXf" secondAttribute="trailing" id="HJw-S7-kuP"/>
                                                 <constraint firstItem="QlF-2R-EXf" firstAttribute="width" secondItem="YJD-dt-O6z" secondAttribute="width" id="cjm-6t-03K"/>
                                                 <constraint firstItem="q3A-zL-vEQ" firstAttribute="top" secondItem="QlF-2R-EXf" secondAttribute="bottom" constant="8" id="iHR-54-2l2"/>
-                                                <constraint firstItem="q3A-zL-vEQ" firstAttribute="leading" secondItem="YJD-dt-O6z" secondAttribute="leading" id="jxa-MJ-h0X"/>
+                                                <constraint firstItem="q3A-zL-vEQ" firstAttribute="leading" secondItem="YJD-dt-O6z" secondAttribute="leading" constant="8" id="jxa-MJ-h0X"/>
                                                 <constraint firstItem="QlF-2R-EXf" firstAttribute="leading" secondItem="YJD-dt-O6z" secondAttribute="leading" id="s6w-LG-wu8"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -183,10 +187,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="olW-vH-qzK">
-                                <rect key="frame" x="0.0" y="88" width="232" height="228"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="olW-vH-qzK">
+                                <rect key="frame" x="91" y="88" width="232" height="228"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.80819710320000004" blue="0.92544582559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="mlZ-g9-SWk" appends="YES" id="3Se-iJ-1Ou"/>
@@ -324,6 +327,7 @@
     </scenes>
     <resources>
         <image name="feed_tab" width="25" height="25"/>
+        <image name="image_placeholder" width="375" height="375"/>
         <image name="insta_camera_btn" width="25" height="25"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="profile_tab" width="25" height="25"/>

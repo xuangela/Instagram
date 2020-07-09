@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDate* timestamp;
 @property (nonatomic, strong) PFFileObject *picture;
 @property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) NSNumber *picAspectRatio;
 
 - (id)initWithPFObject:(PFObject *)postPF;
 
