@@ -29,14 +29,15 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self fetchPosts];
-   
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-//    self.tableView.estimatedRowHeight = 500;
-
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(fetchPosts:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:refreshControl atIndex:0];
+    
+    [self fetchPosts:refreshControl];
 }
 
-- (void)fetchPosts {
+
+- (void)fetchPosts: (UIRefreshControl *)refreshControl{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"user"];
@@ -47,6 +48,7 @@
         if (posts != nil) {
             self.posts = [Post postsWithDictionaries:posts];
             [self.tableView reloadData];
+            [refreshControl endRefreshing];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
