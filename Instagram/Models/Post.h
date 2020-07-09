@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFFileObject *picture;
 @property (nonatomic, strong) PFUser *user;
 @property (nonatomic, strong) NSNumber *picAspectRatio;
+@property (nonatomic, strong) NSNumber *picHeight;
 
 - (id)initWithPFObject:(PFObject *)postPF;
 

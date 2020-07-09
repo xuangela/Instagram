@@ -16,7 +16,7 @@
     self.user = [postPF objectForKey:@"user"];
     self.picture = [postPF objectForKey:@"picture"];
     self.caption = [postPF objectForKey:@"caption"];
-    self.timestamp = [postPF objectForKey:@"createdAt"];
+    self.timestamp = [postPF createdAt];
     self.picAspectRatio = [postPF objectForKey:@"picAspectRatio"];
     
     return self;

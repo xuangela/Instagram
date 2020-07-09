@@ -8,10 +8,12 @@
 
 #import "HomeViewController.h"
 #import "LoginViewController.h"
+#import "ComposeViewController.h"
+#import "PostDetailViewController.h"
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
 #import "PostCell.h"
-#import "ComposeViewController.h"
+
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate>
 
@@ -90,8 +92,11 @@
     Post *post =self.posts[indexPath.row];
     
     CGFloat picRatio = [post.picAspectRatio doubleValue];
+    
+    double picHeightDouble =picRatio * self.tableView.frame.size.width;
+    post.picHeight = [NSNumber numberWithDouble:picHeightDouble];
     // 36 hardcoded. 20 set height for caption + 8 + 8 for top and bottom space
-    return picRatio * self.tableView.frame.size.width + 36;
+    return picHeightDouble + 36;
 }
 
 
@@ -104,6 +109,10 @@
         UINavigationController *navigationController = [segue destinationViewController];
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"DetailSegue"]) {
+        PostDetailViewController *detailController = [segue destinationViewController];
+        PostCell *tappedCell = sender;
+        detailController.post = tappedCell.post;
     }
 }
 
