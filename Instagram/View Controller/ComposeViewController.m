@@ -8,6 +8,7 @@
 
 // TODO: clicking the uiimageview actually presenta an option to choose from camera or cameraroll
 // TODO: warning message is content and the user is trying to delete
+// TODO: can only post once if click the compose button twice
 
 #import <Parse/Parse.h>
 #import "ComposeViewController.h"
@@ -63,10 +64,16 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+   // UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
-    [self.pictureView setImage:originalImage];
-
+    CGFloat newWidth = originalImage.size.width / 5;
+    CGFloat newHeight = originalImage.size.height / 5;
+    
+    
+    CGSize newSize = CGSizeMake(newWidth,  newHeight);
+    UIImage *resizedImage = [self resizeImage:originalImage withSize:newSize];
+    [self.pictureView setImage:resizedImage];
+    
 //    [self.pictureView setImage:[self resizeImage:editedImage withSize:CGSizeMake(1000, 1000)]];
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -104,11 +111,10 @@
         
         Post *post =[[Post alloc] initWithPFObject:myPost];
         
-        [self.delegate didPost:post];
-        
         [myPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (succeeded) {
                 NSLog(@"The message was saved!");
+                [self.delegate didPost:post];
                 [self performSegueWithIdentifier:@"backToHomeSegue" sender:self];
             } else {
                 NSLog(@"Problem saving message: %@", error.localizedDescription);
