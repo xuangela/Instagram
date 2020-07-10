@@ -52,6 +52,10 @@
     [self.usernameTakenAlert addAction:okAction];
 }
 
+- (IBAction)tapOther:(id)sender {
+    [self.view endEditing:YES];
+}
+
 - (IBAction)registerUser:(id)sender {
     if ([self.usernameField.text isEqual:@""]) {
         [self presentViewController:self.emptyUsernameAlert animated:YES completion:^{  }];
