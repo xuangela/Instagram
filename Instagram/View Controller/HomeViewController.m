@@ -13,6 +13,7 @@
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
 #import "PostCell.h"
+#import "InfiniteScrollActivityView.h"
 
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, UIScrollViewDelegate>
@@ -21,6 +22,7 @@
 
 @property (nonatomic, strong) NSMutableArray *posts;  // array of Posts
 @property (nonatomic, strong)UIRefreshControl *refreshControl;
+@property (nonatomic, strong) InfiniteScrollActivityView *loadingMoreView;
 @property (nonatomic, assign) BOOL isMoreDataLoading;
 @property (nonatomic, assign) int timesGetMore;
 
@@ -34,17 +36,28 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    [self refreshSetUp];
+    [self infiniteScrollLoadSetUp];
     
     [self fetchPosts];
+}
+
+- (void)infiniteScrollLoadSetUp {
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    self.loadingMoreView.hidden = true;
+    [self.tableView addSubview:self.loadingMoreView];
+    
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
 }
 
 - (void)refreshSetUp {
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-    
 }
-
 
 - (void)fetchPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
@@ -88,7 +101,12 @@
         
         // When the user has scrolled past the threshold, start requesting
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
-            self.isMoreDataLoading = true;
+            self.isMoreDataLoading = YES;
+            
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            self.loadingMoreView.frame = frame;
+            [self.loadingMoreView startAnimating];
+            
             [self loadMoreData];
         }
     }
@@ -106,9 +124,12 @@
         if (posts != nil) {
             NSArray *newPosts =[Post postsWithDictionaries:posts];
             self.posts = [self.posts arrayByAddingObjectsFromArray:newPosts];
+            
             self.timesGetMore += 1;
+            self.isMoreDataLoading = NO;
+            [self.loadingMoreView stopAnimating];
+            
             [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }

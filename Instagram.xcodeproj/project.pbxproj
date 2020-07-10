@@ -18,6 +18,7 @@
 		B92AB1C824B3C4110015A1D5 /* InstagramUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B92AB1C724B3C4110015A1D5 /* InstagramUITests.m */; };
 		B92AB1D824B3CBB30015A1D5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92AB1D724B3CBB30015A1D5 /* LoginViewController.m */; };
 		B92AB1DB24B3D5E40015A1D5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92AB1DA24B3D5E40015A1D5 /* HomeViewController.m */; };
+		B9338B4924B9206000C03052 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9338B4824B9206000C03052 /* InfiniteScrollActivityView.m */; };
 		B950980724B7CB8D00B82410 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B950980624B7CB8D00B82410 /* PostDetailViewController.m */; };
 		B988872124B513EB00AFD3E2 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988872024B513EB00AFD3E2 /* ComposeViewController.m */; };
 		B988872924B5265400AFD3E2 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B988872824B5265400AFD3E2 /* PostCell.m */; };
@@ -70,6 +71,8 @@
 		B92AB1D724B3CBB30015A1D5 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B92AB1D924B3D5E40015A1D5 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		B92AB1DA24B3D5E40015A1D5 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		B9338B4724B9206000C03052 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
+		B9338B4824B9206000C03052 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
 		B950980524B7CB8D00B82410 /* PostDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
 		B950980624B7CB8D00B82410 /* PostDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 		B988871F24B513EB00AFD3E2 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 			children = (
 				B988872724B5265400AFD3E2 /* PostCell.h */,
 				B988872824B5265400AFD3E2 /* PostCell.m */,
+				B9338B4724B9206000C03052 /* InfiniteScrollActivityView.h */,
+				B9338B4824B9206000C03052 /* InfiniteScrollActivityView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 			files = (
 				B950980724B7CB8D00B82410 /* PostDetailViewController.m in Sources */,
 				B92AB1D824B3CBB30015A1D5 /* LoginViewController.m in Sources */,
+				B9338B4924B9206000C03052 /* InfiniteScrollActivityView.m in Sources */,
 				B92AB1A224B3C4100015A1D5 /* AppDelegate.m in Sources */,
 				B92AB1B324B3C4110015A1D5 /* main.m in Sources */,
 				B988872124B513EB00AFD3E2 /* ComposeViewController.m in Sources */,
