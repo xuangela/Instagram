@@ -95,7 +95,7 @@
 #pragma mark - Infinite scrolling set up
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if(!self.isMoreDataLoading){
+    if(!self.isMoreDataLoading && self.posts.count == 20 * (1 + self.timesGetMore)){
         int scrollViewContentHeight = self.tableView.contentSize.height;
         int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
         
@@ -123,7 +123,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             NSArray *newPosts =[Post postsWithDictionaries:posts];
-            self.posts = [self.posts arrayByAddingObjectsFromArray:newPosts];
+            self.posts = [NSMutableArray arrayWithArray:[self.posts arrayByAddingObjectsFromArray:newPosts]];
             
             self.timesGetMore += 1;
             self.isMoreDataLoading = NO;

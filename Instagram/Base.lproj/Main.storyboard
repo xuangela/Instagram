@@ -192,7 +192,6 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dF0-ms-4Rh">
                                 <rect key="frame" x="-20" y="88" width="454" height="725"/>
-                                <color key="backgroundColor" red="0.37018430229999999" green="0.80329054590000004" blue="0.54506129029999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="de6-28-rIC"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="V2L-4X-4yO"/>
                             </scrollView>
@@ -248,7 +247,6 @@
                                     <color key="tintColor" red="0.66738533970000002" green="0.72076117989999999" blue="0.76471340659999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="0.45932732679999999" blue="0.66938532340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <color key="tintColor" red="1" green="0.80819710320000004" blue="0.92544582559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstItem="c6a-N2-CDg" firstAttribute="centerX" secondItem="9No-UQ-jCF" secondAttribute="centerX" id="4GR-pA-Srh"/>
@@ -433,8 +431,11 @@
                         <viewLayoutGuide key="safeArea" id="mU7-FX-46D"/>
                     </view>
                     <navigationItem key="navigationItem" id="emh-2H-ZPr">
-                        <barButtonItem key="leftBarButtonItem" title="Logout " id="Jvs-fk-WIl"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout " id="Jvs-fk-WIl">
+                            <color key="tintColor" red="1" green="0.45932732679999999" blue="0.66938532340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="insta_camera_btn" id="1yJ-Zt-3VU">
+                            <color key="tintColor" red="1" green="0.45932732679999999" blue="0.66938532340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <segue destination="U82-Lb-dcb" kind="presentation" identifier="composeSegue" id="P5Y-BV-Zk1"/>
                             </connections>
