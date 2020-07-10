@@ -93,6 +93,10 @@
     return newImage;
 }
 
+- (IBAction)tapOther:(id)sender {
+    [self.view endEditing:YES];
+}
+
 - (IBAction)tapDelete:(id)sender {
     [self performSegueWithIdentifier:@"backToHomeSegue" sender:self];
 }

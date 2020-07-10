@@ -58,6 +58,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="aGn-NT-pUp" firstAttribute="trailing" secondItem="3Su-1d-mCl" secondAttribute="trailing" id="5PN-YL-SvF"/>
                             <constraint firstItem="3Su-1d-mCl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="CbY-Bq-mmD"/>
@@ -75,6 +76,9 @@
                             <constraint firstItem="aGn-NT-pUp" firstAttribute="leading" secondItem="3Su-1d-mCl" secondAttribute="leading" id="veS-fD-DxK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="21m-CW-orO" appends="YES" id="D6T-cp-wjK"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="passwordField" destination="Tmx-rY-sT6" id="MEm-iX-WBn"/>
@@ -83,6 +87,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="21m-CW-orO">
+                    <connections>
+                        <action selector="tapOther:" destination="BYZ-38-t0r" id="dtT-XE-mfm"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="115.84821428571428"/>
         </scene>
@@ -276,22 +285,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="olW-vH-qzK">
-                                <rect key="frame" x="19.5" y="88" width="375" height="375"/>
+                                <rect key="frame" x="19.5" y="88" width="375" height="200"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="375" id="eJa-v3-ncO"/>
+                                    <constraint firstAttribute="height" constant="200" id="eJa-v3-ncO"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="mlZ-g9-SWk" appends="YES" id="3Se-iJ-1Ou"/>
                                 </connections>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a caption..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KGA-Qs-wwF">
-                                <rect key="frame" x="8" y="471" width="398" height="34"/>
+                                <rect key="frame" x="8" y="296" width="398" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="rii-KE-3IU" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KGA-Qs-wwF" secondAttribute="bottom" constant="8" id="B0d-jc-Vch"/>
                             <constraint firstItem="rii-KE-3IU" firstAttribute="trailing" secondItem="KGA-Qs-wwF" secondAttribute="trailing" constant="8" id="LqB-ld-DD1"/>
@@ -303,6 +313,9 @@
                             <constraint firstItem="KGA-Qs-wwF" firstAttribute="top" secondItem="olW-vH-qzK" secondAttribute="bottom" constant="8" id="dBR-Iz-zDz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rii-KE-3IU"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="B4D-el-CK3" appends="YES" id="O9Q-Pg-p4z"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="iZu-dz-hrn">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="trash" catalog="system" id="slA-iJ-iu2">
@@ -329,6 +342,11 @@
                 <tapGestureRecognizer id="mlZ-g9-SWk">
                     <connections>
                         <action selector="tappedPic:" destination="rOj-tb-9H1" id="koG-tQ-RX2"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="B4D-el-CK3">
+                    <connections>
+                        <action selector="tapOther:" destination="rOj-tb-9H1" id="beE-Zg-CvC"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
