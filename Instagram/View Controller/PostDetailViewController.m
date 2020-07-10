@@ -7,6 +7,7 @@
 //
 
 #import "PostDetailViewController.h"
+#import "NSDate+DateTools.h"
 #import "Post.h"
 
 @interface PostDetailViewController ()
@@ -17,6 +18,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UIView *picContainerView;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIStackView *stackView;
+
+
 @end
 
 @implementation PostDetailViewController
@@ -24,17 +29,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self scrollAndStack];
     [self displayPostInfo];
+}
+ 
+- (void) scrollAndStack {
+    [self.scrollView addSubview:self.stackView];
+    self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.stackView.leadingAnchor constraintEqualToAnchor:self.scrollView.leadingAnchor].active = YES;
+    [self.stackView.trailingAnchor constraintEqualToAnchor:self.scrollView.trailingAnchor].active = YES;
+    [self.stackView.topAnchor constraintEqualToAnchor:self.scrollView.topAnchor].active = YES;
+    [self.stackView.bottomAnchor constraintEqualToAnchor:self.scrollView.bottomAnchor].active = YES;
+    [self.stackView.widthAnchor constraintEqualToAnchor:self.scrollView.widthAnchor].active = YES;
+    
 }
 
 - (void)displayPostInfo {
     
     self.userLabel.text = [self.post.user objectForKey:@"username"];
     self.captionLabel.text = self.post.caption;
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"YYYY-MM-DDTHH:MM:SS.MMMZ";
-    self.timestampLabel.text = [formatter stringFromDate:self.post.timestamp];
+    self.timestampLabel.text = [[self.post.timestamp shortTimeAgoSinceNow] stringByAppendingString:@" ago"];
     
     [self.picContainerView setTranslatesAutoresizingMaskIntoConstraints:YES];
     
