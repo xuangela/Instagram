@@ -15,11 +15,14 @@
 #import "PostCell.h"
 
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *posts;  // array of Posts
+@property (nonatomic, strong)UIRefreshControl *refreshControl;
+@property (nonatomic, assign) BOOL isMoreDataLoading;
+@property (nonatomic, assign) int timesGetMore;
 
 @end
 
@@ -31,15 +34,19 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(fetchPosts:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:refreshControl atIndex:0];
     
-    [self fetchPosts:refreshControl];
+    [self fetchPosts];
+}
+
+- (void)refreshSetUp {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
 }
 
 
-- (void)fetchPosts: (UIRefreshControl *)refreshControl{
+- (void)fetchPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"user"];
@@ -50,7 +57,7 @@
         if (posts != nil) {
             self.posts = [Post postsWithDictionaries:posts];
             [self.tableView reloadData];
-            [refreshControl endRefreshing];
+            [self.refreshControl endRefreshing];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
@@ -70,6 +77,42 @@
     sceneDelegate.window.rootViewController = loginViewController;
     
     [PFUser logOutInBackgroundWithBlock:^(NSError * error) {   }];
+}
+
+#pragma mark - Infinite scrolling set up
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(!self.isMoreDataLoading){
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            [self loadMoreData];
+        }
+    }
+}
+
+- (void) loadMoreData {
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"user"];
+    query.skip = 20 * (1 + self.timesGetMore);
+    query.limit = 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            NSArray *newPosts =[Post postsWithDictionaries:posts];
+            self.posts = [self.posts arrayByAddingObjectsFromArray:newPosts];
+            self.timesGetMore += 1;
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 #pragma mark - Table view set up
